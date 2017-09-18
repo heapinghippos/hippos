@@ -1,19 +1,35 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import NavBar from './NavBar.jsx';
+import Display from './Display.jsx'
 
 class App extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
+      currentCities: [{
+        name: 'London',
+        dateOfArrival: '2017-06-25',
+        dateofDeparture: '2017-07-02'
+      },
+      {
+        name: 'Paris',
+        dateOfArrival: '2017-07-25',
+        dateofDeparture: '2017-08-02'
+
+      }],
+      tags: []
 
 		}
 	}
 
 	render() {
 		return (
-			<div>app is rendering</div>
-			)
+			<div>
+        <NavBar/>
+        <Display/>
+			</div>
+		)
 	}
 }
 
