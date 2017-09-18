@@ -9,7 +9,6 @@ class App extends React.Component {
 		this.state = {
       currentCities: [],
       tags: ''
-
 		}
     this.addCity = this.addCity.bind(this);
     this.addTags = this.addTags.bind(this);
