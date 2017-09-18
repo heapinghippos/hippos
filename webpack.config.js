@@ -4,7 +4,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 var config = {
-	entry: './index.jsx',
+	entry: './public/index.jsx',
 	output: { path: __dirname + '/public', filename: 'bundle.js' },
 	module: {
 		loaders: [
@@ -20,6 +20,7 @@ var config = {
 			}
 		}]
 	},
+	watch: true
 }
 
 module.exports = config;
