@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 const db = mongoose.connection;
 
-db.on('error', console.error('EARroar!'));
+db.on('error', function() {
+	console.error('EARroar!');
+});
 db.once('open', function() {
   console.log('The doors are open! The doors are open.')
 
