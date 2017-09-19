@@ -22409,9 +22409,9 @@ var _react = __webpack_require__(183);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _NavBar = __webpack_require__(185);
+var _InputBar = __webpack_require__(187);
 
-var _NavBar2 = _interopRequireDefault(_NavBar);
+var _InputBar2 = _interopRequireDefault(_InputBar);
 
 var _Display = __webpack_require__(186);
 
@@ -22434,29 +22434,45 @@ var App = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
     _this.state = {
-      currentCities: [{
-        name: 'London',
-        dateOfArrival: '2017-06-25',
-        dateofDeparture: '2017-07-02'
-      }, {
-        name: 'Paris',
-        dateOfArrival: '2017-07-25',
-        dateofDeparture: '2017-08-02'
-
-      }],
-      tags: []
+      currentCities: [],
+      tags: ''
 
     };
+    _this.addCity = _this.addCity.bind(_this);
+    _this.addTags = _this.addTags.bind(_this);
     return _this;
   }
 
   _createClass(App, [{
+    key: 'addCity',
+    value: function addCity(locationName, dateOfArrival, dateOfDeparture) {
+      var city = {
+        locationName: locationName,
+        dateOfArrival: dateOfArrival,
+        dateOfDeparture: dateOfDeparture
+      };
+      var tempCities = this.state.currentCities;
+      tempCities.push(city);
+      this.setState({
+        currentCities: tempCities
+      });
+      console.log(this.state);
+    }
+  }, {
+    key: 'addTags',
+    value: function addTags(tripName) {
+      this.setState({
+        tags: tripName
+      });
+      console.log(this.state);
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_NavBar2.default, null),
+        _react2.default.createElement(_InputBar2.default, { addCityToParent: this.addCity, addTagsToParent: this.addTags }),
         _react2.default.createElement(_Display2.default, null)
       );
     }
@@ -22468,29 +22484,7 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 185 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _react = __webpack_require__(183);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function NavBar(props) {
-	return _react2.default.createElement('div', null);
-}
-
-exports.default = NavBar;
-
-/***/ }),
+/* 185 */,
 /* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22516,6 +22510,135 @@ function Display(props) {
 }
 
 exports.default = Display;
+
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(183);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var InputBar = function (_React$Component) {
+  _inherits(InputBar, _React$Component);
+
+  function InputBar(props) {
+    _classCallCheck(this, InputBar);
+
+    var _this = _possibleConstructorReturn(this, (InputBar.__proto__ || Object.getPrototypeOf(InputBar)).call(this, props));
+
+    _this.state = {
+      tripName: '',
+      locationName: '',
+      dateOfArrival: '',
+      dateOfDeparture: ''
+    };
+    _this.handleInputChange = _this.handleInputChange.bind(_this);
+    _this.handleAddCity = _this.handleAddCity.bind(_this);
+    _this.handleAddTripName = _this.handleAddTripName.bind(_this);
+    return _this;
+  }
+
+  _createClass(InputBar, [{
+    key: 'handleInputChange',
+    value: function handleInputChange(event) {
+      var target = event.target;
+      var value = target.value;
+      var name = target.name;
+      this.setState(_defineProperty({}, name, value));
+    }
+  }, {
+    key: 'handleAddCity',
+    value: function handleAddCity(event) {
+      event.preventDefault();
+      this.props.addCityToParent(this.state.locationName, this.state.dateOfArrival, this.state.dateOfDeparture);
+    }
+  }, {
+    key: 'handleAddTripName',
+    value: function handleAddTripName(event) {
+      event.preventDefault();
+      this.props.addTagsToParent(this.state.tripName);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h2',
+          null,
+          'Nav Bar'
+        ),
+        _react2.default.createElement(
+          'form',
+          { onSubmit: this.state.handleAddCity },
+          _react2.default.createElement(
+            'label',
+            null,
+            'Trip Name:',
+            _react2.default.createElement('input', { type: 'text', name: 'tripName', value: this.state.tripName, onChange: this.handleInputChange })
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement('input', { type: 'submit', value: 'Create', onClick: this.handleAddTripName })
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'form',
+          null,
+          _react2.default.createElement(
+            'label',
+            null,
+            'Location:',
+            _react2.default.createElement('input', { type: 'text', name: 'locationName', value: this.state.locationName, onChange: this.handleInputChange })
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'label',
+            null,
+            'Date of Arrival:',
+            _react2.default.createElement('input', { type: 'text', name: 'dateOfArrival', value: this.state.dateOfArrival, onChange: this.handleInputChange })
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'label',
+            null,
+            'Date of Departure:',
+            _react2.default.createElement('input', { type: 'text', name: 'dateOfDeparture', value: this.state.dateOfDeparture, onChange: this.handleInputChange })
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement('input', { type: 'submit', value: 'Add', action: '#', onClick: this.handleAddCity })
+        )
+      );
+    }
+  }]);
+
+  return InputBar;
+}(_react2.default.Component);
+
+exports.default = InputBar;
 
 /***/ })
 /******/ ]);
