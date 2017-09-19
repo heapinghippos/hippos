@@ -1,5 +1,6 @@
 import React from 'react';
 import InputBar from './InputBar.jsx';
+import InputBar from './InputBar.jsx';
 import Display from './Display.jsx'
 
 class App extends React.Component {
