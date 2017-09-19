@@ -10,6 +10,7 @@ export default class InputBar extends React.Component {
       dateOfArrival: '',
       dateOfDeparture: '',
       router: ''
+
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleAddCity = this.handleAddCity.bind(this);
