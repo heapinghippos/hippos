@@ -13,6 +13,14 @@ app.use(express.static('./public'));
 
 app.use('/api', router);
 
+app.get('/', function(req, res) {
+	res.redirect('/#/');
+})
+
+app.get('/login', function(req, res) {
+	res.redirect('/#/login');
+})
+
 const port = 3000;
 
 app.listen(port, function() {
