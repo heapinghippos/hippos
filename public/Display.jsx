@@ -1,7 +1,9 @@
 import React from 'react';
-
-function Display(props) {
-	return <div> </div>;
+const Displayed = (props) => {
+	return <div>
+		<h1>{props.city.locationName}</h1>
+		<ul>{props.city.dateOfArrival}</ul>
+		<ul>{props.city.dateOfDeparture}</ul>
+	</div>			
 }
-
-export default Display;
+export default Displayed;

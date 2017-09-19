@@ -7,7 +7,8 @@ export default class Home extends React.Component {
 		super(props);
 		this.state = {
 			currentCities: [],
-      tags: ''
+      tags: '',
+      savedTags: ['hi', 'hello']
 
 		}
 		this.addCity = this.addCity.bind(this);
@@ -36,10 +37,15 @@ export default class Home extends React.Component {
   }
 
 	render() {
+    let city = this.state.currentCities.map((city) => {
+      return <Displayed city={city} currentCities={this.state.currentCities} />
+    });
 		return (
 			<div>
+        <TopBar createNewTrip={this.createNewTrip} 
+          savedTags={this.state.savedTags} showDiv={this.state.showDiv}/>
 	      <InputBar addCityToParent={this.addCity} addTagsToParent={this.addTags}/>
-	      <Display/>
+        {city}
 			</div>
 		)
 	}
