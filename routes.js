@@ -9,21 +9,25 @@ const User = require('./db/userSchema');
 //   // initial get to landing page
 // });
 
-router.get('/savedTrip', function(req, res) {
-  // res.send all the saved trips from db
-});
+// router.get('/savedTrip', function(req, res) {
+//   // res.send all the saved trips from db
+// });
 
 
 router.post('/saveNewTrip', function(req, res) {
-  
+  console.log(req.body)
 
-  // City.create({
+  City.create({
+  	// tag: ,
+   //  user: ,
+    locationName: req.body.locationName,
+    arrivalDate: req.body.arrivalDate,
+    departureDate: req.body.departureDate
+  })
 
-  // })
+  User.create({
 
-  // User.create({
-
-  // })
+  })
 
 });
 
