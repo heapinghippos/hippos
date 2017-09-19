@@ -6,6 +6,7 @@ var citySchema = mongoose.Schema({
   locationName: String,
   arrivalDate: String,
   departureDate: String
+
 });
 
 module.exports = mongoose.model('City', citySchema);
