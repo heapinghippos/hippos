@@ -1,5 +1,8 @@
 node_modules/
+<<<<<<< 1daf0f4fc1f3d0fc5497f8eec525dd76e11c2163
 public/bundle.js
 
+=======
+>>>>>>> Connect Mongo database, create citySchema, create userSchema
 
 *.DS_Store
