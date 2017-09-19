@@ -8,6 +8,7 @@ import {
   HashRouter
 } from 'react-router-dom';
 
+
 export default class App extends React.Component {
 
   constructor(props) {
@@ -26,4 +27,8 @@ export default class App extends React.Component {
       </HashRouter>
     )
   }
+
+  
 }
+
+export default App;
