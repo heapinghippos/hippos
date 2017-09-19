@@ -1,14 +1,15 @@
 import React from 'react';
 import InputBar from './InputBar.jsx';
-import Display from './Display.jsx';
+import Displayed from './Display.jsx';
+import TopBar from './TopBar.jsx';
 
 export default class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			currentCities: [],
-      tags: ''
-
+      tags: '',
+      savedTags: ['hi', 'hello']
 		}
 		this.addCity = this.addCity.bind(this);
     this.addTags = this.addTags.bind(this);
@@ -36,10 +37,16 @@ export default class Home extends React.Component {
   }
 
 	render() {
-		return (
-			<div>
+
+let city = this.state.currentCities.map((city) => {
+      return <Displayed city={city} currentCities={this.state.currentCities} />
+    });
+    return (
+      <div>
+        <TopBar createNewTrip={this.createNewTrip} 
+          savedTags={this.state.savedTags} showDiv={this.state.showDiv}/>
 	      <InputBar addCityToParent={this.addCity} addTagsToParent={this.addTags}/>
-	      <Display/>
+        {city}
 			</div>
 		)
 	}
