@@ -1,49 +1,29 @@
 import React from 'react';
-import InputBar from './InputBar.jsx';
-import Display from './Display.jsx'
+import Home from './Home.jsx';
+import Login from './Login.jsx';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  HashRouter
+} from 'react-router-dom';
 
-class App extends React.Component {
+export default class App extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-      currentCities: [],
-      tags: ''
-
 		}
-    this.addCity = this.addCity.bind(this);
-    this.addTags = this.addTags.bind(this);
 	}
-
-  addCity (locationName, dateOfArrival, dateOfDeparture) {
-    var city = {
-      locationName: locationName,
-      dateOfArrival: dateOfArrival,
-      dateOfDeparture: dateOfDeparture
-    }
-    var tempCities = this.state.currentCities;
-    tempCities.push(city);
-    this.setState ({
-      currentCities: tempCities
-    })
-    console.log(this.state);
-  }
-
-  addTags (tripName) {
-    this.setState ({
-      tags: tripName
-    })
-    console.log(this.state);
-  }
 
 	render() {
 		return (
-			<div>
-        <InputBar addCityToParent={this.addCity} addTagsToParent={this.addTags}/>
-        <Display/>
-			</div>
+      <HashRouter>
+        <div>
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={Login} />
+        </div>
+      </HashRouter>
 		)
 	}
 }
-
-export default App;
