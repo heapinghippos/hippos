@@ -8,12 +8,19 @@ import {
   HashRouter
 } from 'react-router-dom';
 
-
 export default class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
+    }
+  }
+
+  addCity (locationName, dateOfArrival, dateOfDeparture) {
+    var city = {
+      locationName: locationName,
+      dateOfArrival: dateOfArrival,
+      dateOfDeparture: dateOfDeparture
     }
   }
   render() {
@@ -27,6 +34,20 @@ export default class App extends React.Component {
     )
   }
 
-  
+
+  render() {
+    let city = this.state.currentCities.map((city) => {
+      return <Displayed city={city} currentCities={this.state.currentCities} />
+    });
+    return (
+      <div>
+        <TopBar savedTrips={this.savedTrips} createNewTrip={this.createNewTrip} />
+        <InputBar addCityToParent={this.addCity} addTagsToParent={this.addTags} />
+      {this.state.tags}
+       {city}
+      </div>
+
+    )
+  }
 }
 
