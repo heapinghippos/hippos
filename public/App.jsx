@@ -15,7 +15,6 @@ export default class App extends React.Component {
     super(props);
     this.state = {
     }
-  }
 
   render() {
     return (
@@ -31,4 +30,3 @@ export default class App extends React.Component {
   
 }
 
-export default App;
